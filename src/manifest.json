@@ -1,0 +1,16 @@
+{
+    "name": "Statistics Parser",
+    "short_name": "Statistics Parser",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#222",
+    "description": "This site allows you to take the output of SQL Server STATISTICS IO then transforms and totals it into a more useful format",
+    "theme_color": "#222",
+    "icons": [
+      {
+        "src": "/assets/img/handyman.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }

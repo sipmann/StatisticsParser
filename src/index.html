@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en"><head>
+<html lang="en">
+<head>
     <meta charset="utf-8">
     <title>Statistics Parser</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,9 @@
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/DT_bootstrap.css" rel="stylesheet">
+
+    <link rel="manifest" href="./manifest.json">
+
     <style>
         body {
             padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -43,13 +47,14 @@
                     <li><a href="https://github.com/Jorriss/StatisticsParser">GitHub Source</a></li>
                 </ul>
                 <ul class="nav pull-right navbar-nav">
-                    <!--li class="dropdown">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="languageDropdownText">Language</span> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="?lang=en">English</a></li>
                             <li><a href="?lang=es">Español</a></li>
+                            <li><a href="?lang=pt-br">Português</a></li>
                         </ul>
-                    </li -->
+                    </li>
                 </ul>
             </div>
             <!--/.nav-collapse -->
@@ -68,13 +73,14 @@
 
         <form>
             <p>
-                </p><div>
-                    <div class="checkbox"><label class="pull-right">
-                        <input type="checkbox" id="exampleCheck" value="" onclick="includeExample(exampleCheck.checked, langText)">
-                        Show Example Statistics IO Output
-                    </label></div>
-                </div>
-                <textarea id="statiotext" rows="10"></textarea>
+            </p>
+            <div>
+                <div class="checkbox"><label class="pull-right">
+                    <input type="checkbox" id="exampleCheck" value="" onclick="includeExample(exampleCheck.checked, langText)">
+                    Show Example Statistics IO Output
+                </label></div>
+            </div>
+            <textarea id="statiotext" rows="10"></textarea>
             <p></p>
             <div class="button-padding">
                 <div style="float: left">
@@ -124,6 +130,8 @@
         versionNumber();
  
         $(document).ready(function () {
+            registerSW(); 
+
             var languageType = purl().param('lang');
             var filename = determineLangFilename(languageType);
             var urlStatsOutput = purl().param('data');
@@ -150,6 +158,17 @@
             
          
         });
+
+        async function registerSW() { 
+            if ('serviceWorker' in navigator) { 
+                try {
+                    await navigator.serviceWorker.register('assets/js/sw.js'); 
+                } catch (e) {
+                    console.error(e);
+                    alert('ServiceWorker registration failed. Sorry about that.'); 
+                }
+            }
+        }
     </script>    
 
 <script>

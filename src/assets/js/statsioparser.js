@@ -79,6 +79,7 @@ function determineLang(strRow){
 
     if (strRow.substring(0,7) === 'Table \'') { lang = 1; } // English
     else if (strRow.substring(0, 7) === 'Tabla \'') { lang = 2; } // Spanish
+    else if (strRow.substring(0, 8) === 'Tabela \'') { lang = 3; } // Portuguese
     else if ($.trim(strRow.substring(0, 6)) === 'Tiempo') { lang = 2; } // Spanish
     else if ($.trim(strRow.substring(0, 7)) === 'Tiempos') { lang = 2; } // Spanish
 
@@ -93,6 +94,9 @@ function determineLangFilename (langType) {
             break;
         case 'es': // Spanish
             filename = 'assets/data/languagetext-es.json'
+            break;
+        case 'pt-br': // Portuguese
+            filename = 'assets/data/languagetext-pt-br.json'
             break;
         default :
             filename = 'assets/data/languagetext-en.json'
